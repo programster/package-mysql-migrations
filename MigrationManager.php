@@ -61,14 +61,21 @@ class MigrationManager
                 # Performing an upgrade
                 foreach ($migrationFiles as $migrationFileVersion => $filepath)
                 {
-                    if ($migrationFileVersion > $databaseVersion && 
-                        $migrationFileVersion <= $desired_version)
+                    if 
+                    (
+                        $migrationFileVersion > $databaseVersion && 
+                        $migrationFileVersion <= $desired_version
+                    )
                     {
                         $className = self::include_file_and_get_class_name($filepath);
                         
                         /* @var $migrationObject MigrationInterface */
                         $migrationObject = new $className();
                         $migrationObject->up($this->m_mysqli_conn);
+                        
+                        # Update the version after every successful migration in case a later one
+                        # fails
+                        $this->insert_db_version($migrationFileVersion);
                     }
                 }
             }
@@ -79,21 +86,25 @@ class MigrationManager
                 
                 foreach ($migrationFiles as $migrationFileVersion => $filepath)
                 {
-                    if ($migrationFileVersion <= $databaseVersion && 
-                        $migrationFileVersion > $desired_version)
+                    if 
+                    (
+                        $migrationFileVersion <= $databaseVersion && 
+                        $migrationFileVersion > $desired_version
+                    )
                     {
                         $className = self::include_file_and_get_class_name($filepath);
                         
                         /* @var $migrationObject MigrationInterface */
                         $migrationObject = new $className();
                         $migrationObject->down($this->m_mysqli_conn);
+                        
+                        # Update the version after every successful migration in case a later one
+                        # fails
+                        $this->insert_db_version($migrationFileVersion);
                     }
                 }
             }
         }
-        
-        # Update the database so it now knows that it is at the new version.
-        $this->insert_db_version($desired_version);
     }
     
     
@@ -282,5 +293,4 @@ class MigrationManager
         $tableCreator->run();
     }
 }
-
 
