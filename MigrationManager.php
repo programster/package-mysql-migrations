@@ -100,7 +100,7 @@ class MigrationManager
                         
                         # Update the version after every successful migration in case a later one
                         # fails
-                        $this->insert_db_version($migrationFileVersion);
+                        $this->insert_db_version(($migrationFileVersion - 1));
                     }
                 }
             }
