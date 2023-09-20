@@ -3,20 +3,27 @@
     "type": "library",
     "description": "Package handling Mysql Migrations/versioning.",
     "keywords": ["mysql", "mysqli","models"],
-    "homepage": "http://www.irap.org/",
+    "homepage": "https://www.irap.org/",
     "license": "none",
     "authors": [
         {
             "name": "Stuart Page",
             "email": "stuart.page@irap.org",
-            "homepage": "http://irap.org/",
+            "homepage": "https://irap.org/",
             "role": "Developer"
+        },
+        {
+            "name": "Samrat Rai",
+            "email": "samrat.rai@irap.org",
+            "homepage": "https://irap.org/",
+            "role": "Full Stack Developer"
         }
     ],
-    "repositories": [ { "type": "composer", "url": "http://satis.irap-dev.org/" } ],
+    "repositories": [ { "type": "composer", "url": "https://satis.irap-dev.org/" } ],
     "require": {
-        "php": ">=5.3.0",
-        "irap/table-creator": "1.1.*"
+        "php": ">=8.2.0",
+        "irap/table-creator": "1.1.*",
+        "ext-mysqli": "*"
     },
     "autoload": {
         "psr-4": {
