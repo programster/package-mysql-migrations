@@ -35,7 +35,7 @@ class MigrationManager
     {
         $this->m_schemas_folder = $migration_folder;
         $this->m_mysqli_conn = $connection;
-        $this->m_table = $table;
+        $this->m_table = $connection->real_escape_string($table);
     }
 
     /**
