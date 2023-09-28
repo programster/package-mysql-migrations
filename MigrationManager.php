@@ -20,9 +20,10 @@ use mysqli;
 
 class MigrationManager
 {
-    private string $m_table;
+    private readonly string $m_table_name;
+    private readonly string $m_escaped_table_name;
     private mysqli $m_mysqli_conn; #  A mysqli connection object that will be used to manipulate the db.
-    private string $m_schemas_folder; # The folder in which migration scripts are located.
+    private readonly string $m_schemas_folder; # The folder in which migration scripts are located.
 
     /**
      * Creates the Migration object in preparation for migration.
@@ -35,7 +36,8 @@ class MigrationManager
     {
         $this->m_schemas_folder = $migration_folder;
         $this->m_mysqli_conn = $connection;
-        $this->m_table = $connection->real_escape_string($table);
+        $this->m_table_name = $table;
+        $this->m_escaped_table_name = $connection->escape_string($table);
     }
 
     /**
@@ -201,7 +203,7 @@ class MigrationManager
     private function insert_db_version(int $version): void
     {
         $query =
-            "REPLACE INTO `$this->m_table` " .
+            "REPLACE INTO `$this->m_escaped_table_name` " .
             "SET `id`='1', `version`='" . $version . "'";
 
         $result = $this->m_mysqli_conn->query($query);
@@ -218,10 +220,10 @@ class MigrationManager
      */
     private function get_db_version(): int
     {
-        $result = $this->m_mysqli_conn->query("SHOW TABLES LIKE '$this->m_table'");
+        $result = $this->m_mysqli_conn->query("SHOW TABLES LIKE '$this->m_escaped_table_name'");
 
         if ($result->num_rows > 0) {
-            $query = "SELECT * FROM `$this->m_table`";
+            $query = "SELECT * FROM `$this->m_escaped_table_name`";
             $result = $this->m_mysqli_conn->query($query);
 
             if ($result === FALSE || $result->num_rows == 0) {
@@ -253,7 +255,7 @@ class MigrationManager
      */
     private function create_migration_table(): void
     {
-        $tableCreator = new TableCreator($this->m_mysqli_conn, $this->m_table);
+        $tableCreator = new TableCreator($this->m_mysqli_conn, $this->m_table_name);
 
         $fields = array(
             DatabaseField::createInt('id', 1, true),
