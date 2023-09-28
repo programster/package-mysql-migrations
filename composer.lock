@@ -1,0 +1,68 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "f821e72237d378cf6fa1a21b3b2ecb77",
+    "packages": [
+        {
+            "name": "irap/table-creator",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/iRAP-software/package-table-creator.git",
+                "reference": "29dccfaf8a5dd3c41258a17a56ffc1b2a0136a61"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/iRAP-software/package-table-creator/zipball/29dccfaf8a5dd3c41258a17a56ffc1b2a0136a61",
+                "reference": "29dccfaf8a5dd3c41258a17a56ffc1b2a0136a61",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "iRAP\\TableCreator\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stuart Page",
+                    "email": "stuart.page@iRAP.org",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Package creating or editing MySQL tables.",
+            "keywords": [
+                "models",
+                "mysql",
+                "mysqli"
+            ],
+            "support": {
+                "issues": "https://github.com/iRAP-software/package-table-creator/issues",
+                "source": "https://github.com/iRAP-software/package-table-creator/tree/1.1.1"
+            },
+            "time": "2023-09-28T08:36:49+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=8.2.0",
+        "ext-mysqli": "*"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "2.2.0"
+}
