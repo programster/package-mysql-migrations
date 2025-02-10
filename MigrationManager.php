@@ -50,7 +50,7 @@ class MigrationManager
      * @return void updates database.
      * @throws Exception
      */
-    public function migrate(int $desired_version = null): void
+    public function migrate(int|null $desired_version = null): void
     {
         $databaseVersion = $this->get_db_version();
         $migrationFiles = $this->get_migration_files();
