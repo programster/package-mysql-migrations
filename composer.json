@@ -22,7 +22,7 @@
     "repositories": [ { "type": "composer", "url": "https://satis.irap-dev.org/" } ],
     "require": {
         "php": ">=8.2.0",
-        "irap/table-creator": "dev-php8.4",
+        "irap/table-creator": "2.1.*",
         "ext-mysqli": "*"
     },
     "autoload": {
