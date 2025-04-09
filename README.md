@@ -1,3 +1,4 @@
-PHP Package to handle MySQLi based database migrations.
+MySQL Migrations PHP Package
+============================
 
-Or, to manage executing of one-time scripts
+A PHP Package to handle MySQL database migrations.
