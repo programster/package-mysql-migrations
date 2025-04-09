@@ -18,7 +18,6 @@ use mysqli;
 
 class MigrationManager
 {
-    private readonly string $m_tableName;
     private readonly string $m_escapedTableName;
     private mysqli $m_mysqliConn; #  A mysqli connection object that will be used to manipulate the db.
     private readonly string $m_migrationsFolder; # The folder in which migration scripts are located.
@@ -35,7 +34,6 @@ class MigrationManager
     {
         $this->m_migrationsFolder = $migrationsFolder;
         $this->m_mysqliConn = $connection;
-        $this->m_tableName = $table;
         $this->m_escapedTableName = $connection->escape_string($table);
     }
 
